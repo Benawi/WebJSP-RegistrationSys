@@ -40,9 +40,9 @@
                             </div>
     
                             <div class="form-group-lg">
-                                <label class="col-xs-push-3 control-label" for="Sex">Sex:</label>
+                                <label class="col-xs-push-3 control-label" for="gender">Gender:</label>
                                 <div class=" col-xs-push-3">
-                                    <select class="form-control"  name="userCountry">
+                                    <select class="form-control"  name="gender">
                                         <option>Select</option>
                                         <option>Male</option>
                                         <option>Female</option>

@@ -13,16 +13,15 @@ public class Register extends HttpServlet {
         PrintWriter out = response.getWriter();
         //out.print("hello html");
         String n = request.getParameter("userName");
-        String p = request.getParameter("userPass");
+        String p = request.getParameter("lastName");
         String e = request.getParameter("userEmail");
         String c = request.getParameter("userCountry");
-        String s = request.getParameter("Sex");
+        String s = request.getParameter("gender");
 
         try {
             DBConnection dbcon = new DBConnection();
             Connection con = dbcon.connMethod();
-            out.print("You are connected successfully ...");
-            PreparedStatement ps = con.prepareStatement("insert into registeruser values(?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into USERPROFILE values(?,?,?,?,?)");
             ps.setString(1, n);
             ps.setString(2, p);
             ps.setString(3, e);
@@ -32,9 +31,10 @@ public class Register extends HttpServlet {
             int i = ps.executeUpdate();
             if (i > 0) {
                 out.print("You are successfully Inserted...");
+                out.print("<jsp:include page=\"Header.jspf\"></jsp:include>");
                 out.print("<form action=\"/Webregisteruser/servlet/Search\" method=\"\">\n"
                         + "<input type=\"submit\" value=\"View\"/>");
-                ps = con.prepareStatement("select * from REGISTERUSER");
+                ps = con.prepareStatement("select * from USERPROFILE");
                 out.print("<table width=50% border=1>");
                 out.print("<caption>Result:</caption>");
                 ResultSet rs = ps.executeQuery();
@@ -51,7 +51,7 @@ public class Register extends HttpServlet {
 
                 /* Printing result */
                 while (rs.next()) {
-                    out.print("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) +"</td><td>" + rs.getString(5) + "</td></tr>");
+                    out.print("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" + rs.getString(5) + "</td></tr>");
 
                 }
                 out.print("</table>");

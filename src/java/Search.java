@@ -16,7 +16,7 @@ public class Search extends HttpServlet {
             DBConnection dbcon = new DBConnection();
             Connection con = dbcon.connMethod();
 
-            PreparedStatement ps = con.prepareStatement("select * from REGISTERUSER");
+            PreparedStatement ps = con.prepareStatement("select * from USERPROFILE");
             //  ps.setInt(1, roll);
 
             out.print("<table width=50% border=1>");
@@ -35,7 +35,7 @@ public class Search extends HttpServlet {
 
             /* Printing result */
             while (rs.next()) {
-                out.print("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td></tr>");
+                out.print("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>"+rs.getString(5)+"</td></tr>");
 
             }
             out.print("</table>");
